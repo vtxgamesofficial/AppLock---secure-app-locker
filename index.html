@@ -1,105 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AppLock - Secure App Locker</title>
-<style>
-body {
-    margin: 0;
-    background: #000;
-    color: #fff;
-    font-family: Arial, sans-serif;
-    text-align: center;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AppLock | Secure App Locker</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-primary: #000000;
+            --text-secondary: #5f6368;
+            --border-color: #e0e0e0;
+            --button-bg: #000000;
+            --button-hover: #333333;
+        }
 
-.container {
-    padding: 40px 20px;
-    max-width: 800px;
-    margin: auto;
-}
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
 
-h1 {
-    font-size: 28px;
-    margin-bottom: 10px;
-}
+        /* Navigation / Header Component */
+        .nav-bar {
+            height: 64px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            z-index: 100;
+        }
 
-.subtitle {
-    color: #aaa;
-    margin-bottom: 40px;
-}
+        .nav-logo {
+            font-weight: 600;
+            font-size: 20px;
+            letter-spacing: -0.5px;
+        }
 
-button {
-    background: #7a00ff;
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 8px;
-    transition: 0.2s;
-}
+        /* Hero Section */
+        .hero {
+            padding: 80px 24px;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
 
-button:hover {
-    background: #9d33ff;
-}
+        h1 {
+            font-size: 56px;
+            font-weight: 700;
+            margin: 0 0 16px 0;
+            letter-spacing: -1.5px;
+            line-height: 1.1;
+        }
 
-.features {
-    text-align: left;
-    margin-top: 50px;
-}
+        .subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-.features h2 {
-    margin-top: 30px;
-    color: #b266ff;
-}
+        /* Action Component */
+        .cta-container {
+            margin-top: 40px;
+        }
 
-.footer {
-    margin-top: 60px;
-    color: #777;
-    font-size: 14px;
-}
-</style>
+        .btn-primary {
+            background: var(--button-bg);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            font-size: 16px;
+            font-weight: 500;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background: var(--button-hover);
+        }
+
+        /* Features Grid */
+        .features-grid {
+            max-width: 1000px;
+            margin: 60px auto;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1px;
+            background-color: var(--border-color); /* Creates the grid line effect */
+            border: 1px solid var(--border-color);
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .feature-card h2 {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0 0 12px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .feature-card p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        /* Footer */
+        .footer {
+            border-top: 1px solid var(--border-color);
+            padding: 40px 24px;
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 80px;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 36px; }
+            .features-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>AppLock - Secure App Locker</h1>
-    <div class="subtitle">Advanced Android App Protection</div>
+<nav class="nav-bar">
+    <div class="nav-logo">AppLock</div>
+</nav>
 
-    <a href="AppLock_v2.apk" download>
-        <button>Install AppLock v2</button>
-    </a>
+<main class="hero">
+    <h1>Advanced Android App Protection.</h1>
+    <div class="subtitle">Secure your digital environment with precision-engineered background monitoring and un-bypassable security layers.</div>
+    
+    <div class="cta-container">
+        <a href="AppLock_v2.apk" class="btn-primary" download>
+            Install AppLock v2
+        </a>
+    </div>
+</main>
 
-    <div class="features">
-
-        <h2>Advanced App Locking Engine</h2>
+<section class="features-grid">
+    <div class="feature-card">
+        <h2>Advanced Engine</h2>
         <p>Runs a background monitoring service that detects when locked apps open and instantly displays an un-bypassable full-screen overlay.</p>
+    </div>
 
-        <h2>Customizable Locking Modes</h2>
-        <p>Lock all apps with Nuclear Mode, or select specific apps from a full scrollable list.</p>
+    <div class="feature-card">
+        <h2>Locking Modes</h2>
+        <p>Lock all apps with Nuclear Mode, or select specific apps from a full scrollable list for tailored security.</p>
+    </div>
 
-        <h2>Meme Edition Lock Screen</h2>
-        <p>Displays randomized roast-style meme messages instead of a boring password screen.</p>
+    <div class="feature-card">
+        <h2>Meme Edition</h2>
+        <p>Displays randomized roast-style meme messages instead of a standard password screen for a unique user experience.</p>
+    </div>
 
-        <h2>Secure & Customizable Passcode</h2>
-        <p>Default code: cba. You can change it after unlocking. Stored securely in private app storage.</p>
+    <div class="feature-card">
+        <h2>Secure Passcode</h2>
+        <p>Default code: cba. Modification available after authentication. Stored securely within private application storage.</p>
+    </div>
 
+    <div class="feature-card">
         <h2>Persistence</h2>
-        <p>Auto-starts on boot and runs as a foreground service so Android won’t easily shut it down.</p>
+        <p>Auto-starts on boot and operates as a foreground service to ensure high-priority execution within the Android environment.</p>
+    </div>
 
+    <div class="feature-card">
         <h2>Premium Design</h2>
-        <p>Pure black OLED theme, immersive full-screen UI, custom Neon Purple shield branding.</p>
-
-        <h2>Privacy & Permissions</h2>
-        <p>Includes guided setup for Usage Access and Overlay permissions required for functionality.</p>
-
+        <p>Pure black OLED theme with an immersive full-screen UI and custom Neon Purple shield branding.</p>
     </div>
 
-    <div class="footer">
-        Built by the developer. Not affiliated with Google Play.
+    <div class="feature-card" style="grid-column: span 1;">
+        <h2>Privacy</h2>
+        <p>Includes a guided setup for Usage Access and Overlay permissions required for full security functionality.</p>
     </div>
-</div>
+</section>
+
+<footer class="footer">
+    Built by the developer. Not affiliated with Google Play. All rights reserved.
+</footer>
 
 </body>
 </html>
