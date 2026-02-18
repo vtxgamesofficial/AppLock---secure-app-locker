@@ -4,149 +4,428 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AppLock | Secure App Locker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         :root {
-            --bg-color: #ffffff;
-            --text-primary: #000000;
-            --text-secondary: #5f6368;
-            --border-color: #e0e0e0;
-            --button-bg: #000000;
-            --button-hover: #333333;
+            --black: #0a0a0a;
+            --off-black: #111111;
+            --mid: #1c1c1c;
+            --border: rgba(255,255,255,0.08);
+            --border-light: rgba(255,255,255,0.04);
+            --text: #f0f0f0;
+            --muted: #888;
+            --accent: #ffffff;
+            --mono: 'DM Mono', monospace;
+            --sans: 'DM Sans', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: var(--black);
+            color: var(--text);
+            font-family: var(--sans);
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
 
-        /* Navigation / Header Component */
+        /* ── NAV ── */
         .nav-bar {
-            height: 64px;
-            border-bottom: 1px solid var(--border-color);
+            height: 60px;
+            border-bottom: 1px solid var(--border);
             display: flex;
             align-items: center;
-            padding: 0 24px;
+            justify-content: space-between;
+            padding: 0 32px;
             position: sticky;
             top: 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(8px);
+            background: rgba(10,10,10,0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             z-index: 100;
         }
 
         .nav-logo {
-            font-weight: 600;
-            font-size: 20px;
-            letter-spacing: -0.5px;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 80px 24px;
-            max-width: 1000px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 56px;
-            font-weight: 700;
-            margin: 0 0 16px 0;
-            letter-spacing: -1.5px;
-            line-height: 1.1;
-        }
-
-        .subtitle {
-            font-size: 20px;
-            color: var(--text-secondary);
-            margin-bottom: 32px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Action Component */
-        .cta-container {
-            margin-top: 40px;
-        }
-
-        .btn-primary {
-            background: var(--button-bg);
-            color: white;
-            border: none;
-            padding: 14px 28px;
-            font-size: 16px;
+            font-family: var(--mono);
             font-weight: 500;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background 0.2s ease;
-            text-decoration: none;
+            font-size: 15px;
+            letter-spacing: 0.02em;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-logo::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
             display: inline-block;
         }
 
-        .btn-primary:hover {
-            background: var(--button-hover);
+        .nav-badge {
+            font-family: var(--mono);
+            font-size: 11px;
+            color: var(--muted);
+            letter-spacing: 0.05em;
         }
 
-        /* Features Grid */
-        .features-grid {
-            max-width: 1000px;
-            margin: 60px auto;
-            padding: 0 24px;
+        /* ── HERO ── */
+        .hero {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 100px 32px 80px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1px;
-            background-color: var(--border-color);
-            border: 1px solid var(--border-color);
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
         }
 
-        .feature-card {
+        .hero-left {}
+
+        .hero-eyebrow {
+            font-family: var(--mono);
+            font-size: 11px;
+            color: var(--muted);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .hero-eyebrow::before {
+            content: '';
+            width: 24px;
+            height: 1px;
+            background: var(--muted);
+        }
+
+        h1 {
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 700;
+            line-height: 1.08;
+            letter-spacing: -1.5px;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--muted);
+            font-weight: 300;
+            max-width: 380px;
+        }
+
+        .cta-container {
+            margin-top: 40px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .btn-primary {
             background: white;
-            padding: 40px;
+            color: black;
+            border: none;
+            padding: 13px 26px;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: var(--sans);
+            border-radius: 3px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            letter-spacing: 0.01em;
+            transition: opacity 0.15s ease, transform 0.15s ease;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.88;
+            transform: translateY(-1px);
+        }
+
+
+
+        /* hero right: mock phone-ish terminal */
+        .hero-visual {
+            background: var(--off-black);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            overflow: hidden;
+            aspect-ratio: 4/5;
             display: flex;
             flex-direction: column;
         }
 
-        .feature-card h2 {
-            font-size: 18px;
-            font-weight: 600;
-            margin: 0 0 12px 0;
+        .terminal-bar {
+            background: var(--mid);
+            border-bottom: 1px solid var(--border);
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .dot-r { background: #3a3a3a; }
+        .dot-y { background: #3a3a3a; }
+        .dot-g { background: #3a3a3a; }
+
+        .terminal-title {
+            font-family: var(--mono);
+            font-size: 11px;
+            color: var(--muted);
+            margin-left: 8px;
+        }
+
+        .terminal-body {
+            padding: 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            font-family: var(--mono);
+            font-size: 12px;
+        }
+
+        .t-line {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            opacity: 0;
+            animation: fadeUp 0.4s forwards;
+        }
+
+        .t-line:nth-child(1) { animation-delay: 0.3s; }
+        .t-line:nth-child(2) { animation-delay: 0.6s; }
+        .t-line:nth-child(3) { animation-delay: 0.9s; }
+        .t-line:nth-child(4) { animation-delay: 1.2s; }
+        .t-line:nth-child(5) { animation-delay: 1.5s; }
+        .t-line:nth-child(6) { animation-delay: 1.8s; }
+        .t-line:nth-child(7) { animation-delay: 2.1s; }
+        .t-line:nth-child(8) { animation-delay: 2.4s; }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .t-prompt { color: #555; flex-shrink: 0; }
+        .t-cmd { color: var(--text); }
+        .t-ok { color: #6a6a6a; }
+        .t-highlight { color: white; font-weight: 500; }
+
+        .cursor {
+            display: inline-block;
+            width: 7px;
+            height: 13px;
+            background: white;
+            vertical-align: middle;
+            margin-left: 2px;
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+
+
+        /* ── DIVIDER ── */
+        .section-divider {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 32px;
+            border-top: 1px solid var(--border);
+        }
+
+        .section-label {
+            font-family: var(--mono);
+            font-size: 11px;
+            color: var(--muted);
+            letter-spacing: 0.1em;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            padding: 48px 0 32px;
+        }
+
+        /* ── FEATURES ── */
+        .features-section {
+            max-width: 1080px;
+            margin: 0 auto 100px;
+            padding: 0 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .feature-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            border-bottom: 1px solid var(--border);
+            padding: 40px 0;
+        }
+
+        .feature-row:last-child {
+            border-bottom: none;
+        }
+
+        /* single item row spans both cols */
+        .feature-row.single .feature-card {
+            grid-column: 1 / -1;
+        }
+
+        .feature-card {
+            padding: 0 40px 0 0;
+            position: relative;
+        }
+
+        .feature-card.right {
+            padding: 0 0 0 40px;
+            border-left: 1px solid var(--border);
+        }
+
+        .feature-num {
+            font-family: var(--mono);
+            font-size: 10px;
+            color: #3a3a3a;
+            margin-bottom: 14px;
+            letter-spacing: 0.1em;
+        }
+
+        .feature-card h2 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text);
         }
 
         .feature-card p {
-            font-size: 15px;
-            line-height: 1.6;
-            color: var(--text-secondary);
-            margin: 0;
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--muted);
+            font-weight: 300;
+            max-width: 380px;
         }
 
-        /* Footer */
+        /* slide animations */
+        .slide-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .slide-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .slide-left.visible,
+        .slide-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* ── FOOTER ── */
         .footer {
-            border-top: 1px solid var(--border-color);
-            padding: 60px 24px;
-            text-align: center;
+            border-top: 1px solid var(--border);
+            padding: 48px 32px;
+            max-width: 1080px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .footer-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .footer-logo {
+            font-family: var(--mono);
             font-size: 13px;
-            color: var(--text-secondary);
-            margin-top: 80px;
-            line-height: 2;
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .footer-sep {
+            width: 1px;
+            height: 16px;
+            background: var(--border);
+        }
+
+        .footer-copy {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .footer-right {
+            font-size: 12px;
+            color: var(--muted);
+            text-align: right;
+            line-height: 1.8;
         }
 
         .dev-tag {
             font-weight: 600;
-            color: var(--text-primary);
-            display: block;
-            margin-bottom: 8px;
-            font-size: 14px;
+            color: var(--text);
+            font-size: 13px;
         }
 
-        @media (max-width: 600px) {
-            h1 { font-size: 36px; }
-            .features-grid { grid-template-columns: 1fr; }
+        /* ── RESPONSIVE ── */
+        @media (max-width: 860px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 48px;
+                padding: 64px 24px 48px;
+            }
+
+            .hero-visual { aspect-ratio: 16/9; }
+
+            .feature-row {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .feature-card.right {
+                border-left: none;
+                border-top: 1px solid var(--border);
+                padding: 32px 0 0 0;
+            }
+
+            .feature-card {
+                padding-right: 0;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .footer { flex-direction: column; gap: 24px; text-align: center; }
+            .footer-right { text-align: center; }
         }
     </style>
 </head>
@@ -154,59 +433,132 @@
 
 <nav class="nav-bar">
     <div class="nav-logo">AppLock</div>
+    <div class="nav-badge">v2 — ANDROID</div>
 </nav>
 
 <main class="hero">
-    <h1>Advanced Android App Protection.</h1>
-    <div class="subtitle">Secure your digital environment with precision-engineered background monitoring and un-bypassable security layers.</div>
-    
-    <div class="cta-container">
-        <a href="AppLock_v2.apk" class="btn-primary" download>
-            Install AppLock v2
-        </a>
+    <div class="hero-left">
+        <h1>Advanced Android App Protection.</h1>
+        <p class="subtitle">Secure your digital environment with precision-engineered background monitoring and un-bypassable security layers.</p>
+        <div class="cta-container">
+            <a href="AppLock_v2.apk" class="btn-primary" download>Install AppLock v2</a>
+        </div>
+    </div>
+
+    <div class="hero-visual">
+        <div class="terminal-bar">
+            <div class="dot dot-r"></div>
+            <div class="dot dot-y"></div>
+            <div class="dot dot-g"></div>
+            <span class="terminal-title">applock — daemon</span>
+        </div>
+        <div class="terminal-body">
+            <div class="t-line">
+                <span class="t-prompt">$</span>
+                <span class="t-cmd">./applock <span class="t-highlight">--start</span></span>
+            </div>
+            <div class="t-line">
+                <span class="t-prompt"></span>
+                <span class="t-ok">→ Boot receiver registered</span>
+            </div>
+            <div class="t-line">
+                <span class="t-prompt"></span>
+                <span class="t-ok">→ Foreground service active</span>
+            </div>
+            <div class="t-line">
+                <span class="t-prompt"></span>
+                <span class="t-ok">→ Usage access: <span class="t-highlight">GRANTED</span></span>
+            </div>
+            <div class="t-line">
+                <span class="t-prompt"></span>
+                <span class="t-ok">→ Overlay permission: <span class="t-highlight">GRANTED</span></span>
+            </div>
+            <div class="t-line">
+                <span class="t-prompt"></span>
+                <span class="t-ok">→ Nuclear mode: standby</span>
+            </div>
+            <div class="t-line">
+                <span class="t-prompt"></span>
+                <span class="t-ok">→ Engine: <span class="t-highlight">ARMED</span></span>
+            </div>
+            <div class="t-line">
+                <span class="t-prompt">$</span>
+                <span class="t-cmd"><span class="cursor"></span></span>
+            </div>
+        </div>
     </div>
 </main>
 
-<section class="features-grid">
-    <div class="feature-card">
-        <h2>Advanced Engine</h2>
-        <p>Runs a background monitoring service that detects when locked apps open and instantly displays an un-bypassable full-screen overlay.</p>
+<section class="features-section">
+    <div class="feature-row">
+        <div class="feature-card slide-left">
+            <div class="feature-num">01</div>
+            <h2>Advanced Engine</h2>
+            <p>Runs a background monitoring service that detects when locked apps open and instantly displays an un-bypassable full-screen overlay.</p>
+        </div>
+        <div class="feature-card right slide-right">
+            <div class="feature-num">02</div>
+            <h2>Locking Modes</h2>
+            <p>Lock all apps with Nuclear Mode, or select specific apps from a full scrollable list for tailored security.</p>
+        </div>
     </div>
 
-    <div class="feature-card">
-        <h2>Locking Modes</h2>
-        <p>Lock all apps with Nuclear Mode, or select specific apps from a full scrollable list for tailored security.</p>
+    <div class="feature-row">
+        <div class="feature-card slide-left">
+            <div class="feature-num">03</div>
+            <h2>Meme Edition</h2>
+            <p>Displays randomized roast-style meme messages instead of a standard password screen for a unique user experience.</p>
+        </div>
+        <div class="feature-card right slide-right">
+            <div class="feature-num">04</div>
+            <h2>Secure Passcode</h2>
+            <p>Default code: cba. Modification available after authentication. Stored securely within private application storage.</p>
+        </div>
     </div>
 
-    <div class="feature-card">
-        <h2>Meme Edition</h2>
-        <p>Displays randomized roast-style meme messages instead of a standard password screen for a unique user experience.</p>
+    <div class="feature-row">
+        <div class="feature-card slide-left">
+            <div class="feature-num">05</div>
+            <h2>Persistence</h2>
+            <p>Auto-starts on boot and operates as a foreground service to ensure high-priority execution within the Android environment.</p>
+        </div>
+        <div class="feature-card right slide-right">
+            <div class="feature-num">06</div>
+            <h2>Premium Design</h2>
+            <p>Pure black OLED theme with an immersive full-screen UI and custom Neon Purple shield branding.</p>
+        </div>
     </div>
 
-    <div class="feature-card">
-        <h2>Secure Passcode</h2>
-        <p>Default code: cba. Modification available after authentication. Stored securely within private application storage.</p>
-    </div>
-
-    <div class="feature-card">
-        <h2>Persistence</h2>
-        <p>Auto-starts on boot and operates as a foreground service to ensure high-priority execution within the Android environment.</p>
-    </div>
-
-    <div class="feature-card">
-        <h2>Premium Design</h2>
-        <p>Pure black OLED theme with an immersive full-screen UI and custom Neon Purple shield branding.</p>
-    </div>
-
-    <div class="feature-card">
-        <h2>Privacy</h2>
-        <p>Includes a guided setup for Usage Access and Overlay permissions required for full security functionality.</p>
+    <div class="feature-row">
+        <div class="feature-card slide-left">
+            <div class="feature-num">07</div>
+            <h2>Privacy</h2>
+            <p>Includes a guided setup for Usage Access and Overlay permissions required for full security functionality.</p>
+        </div>
     </div>
 </section>
 
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.slide-left, .slide-right').forEach(el => observer.observe(el));
+</script>
+
 <footer class="footer">
-    <span class="dev-tag">Built by Vaultex top developer "𝓩𝖍𝖓𝖖𝖗"</span>
-    Not affiliated with Google Play. All rights reserved.
+    <div class="footer-left">
+        <span class="footer-logo">AppLock</span>
+        <div class="footer-sep"></div>
+        <span class="footer-copy">Not affiliated with Google Play. All rights reserved.</span>
+    </div>
+    <div class="footer-right">
+        <span class="dev-tag">Built by Vaultex top developer "𝓩𝖍𝖓𝖖𝖗"</span>
+    </div>
 </footer>
 
 </body>
